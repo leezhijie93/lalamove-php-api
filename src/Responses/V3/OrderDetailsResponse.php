@@ -27,6 +27,8 @@ class OrderDetailsResponse
 
     /** @var Stop[] */
     public array $stops = [];
+    
+    public $metadata = null;
 
     public function __construct(object $response = null)
     {
@@ -55,6 +57,7 @@ class OrderDetailsResponse
         $this->distance = $response->distance
             ? new Distance($response->distance->value, $response->distance->unit)
             : null;
+        $this->metadata = $response->metadata ?? null;
 
         if ($response->stops) {
             foreach($response->stops as $stop) {

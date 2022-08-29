@@ -27,6 +27,8 @@ class OrderResponse
 
     /** @var Stop[] */
     public array $stops;
+    
+    public $metadata = null;
 
 
     /**
@@ -57,6 +59,7 @@ class OrderResponse
         $this->shareLink = $response->shareLink;
         $this->status = $response->status;
         $this->distance = $response->distance ? new Distance($response->distance->value, $response->distance->unit) : null;
+        $this->metadata = $response->metadata ?? null;
 
         if ($response->stops) {
             foreach($response->stops as $stop) {
